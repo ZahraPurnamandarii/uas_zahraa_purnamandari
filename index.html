@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Pendaftaran Mahasiswa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="card-container">
+    <p class="card-subtitle">Sistem Informasi Akademik</p>
+    <h1 class="card-title">Form Pendaftaran Mahasiswa</h1>
+
+    <div id="globalError" class="global-error"></div>
+
+    <form id="registrationForm" novalidate>
+      
+      <div class="form-group">
+        <label for="nim">NIM (Nomor Induk Mahasiswa) <span class="required">*</span></label>
+        <input type="text" id="nim" placeholder="Contoh: 202507035" maxlength="12" />
+        <p id="nimErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="nama">Nama Lengkap <span class="required">*</span></label>
+        <input type="text" id="nama" placeholder="Masukkan nama lengkap" />
+        <p id="namaErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address (Alamat Email) <span class="required">*</span></label>
+        <input type="email" id="email" placeholder="nama@gmail.com" />
+        <p id="emailErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="nomorHp">Nomor HP <span class="required">*</span></label>
+        <input type="text" id="nomorHp" placeholder="Contoh: 081234567890" />
+        <p id="nomorHpErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label>Jenis Kelamin <span class="required">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="jenisKelamin" value="Laki-laki"> Laki-laki</label>
+          <label><input type="radio" name="jenisKelamin" value="Perempuan"> Perempuan</label>
+        </div>
+        <p id="jenisKelaminErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="prodi">Program Studi <span class="required">*</span></label>
+        <select id="prodi">
+          <option value="">-- Pilih Program Studi --</option>
+          <option value="Manajemen Informatika">Manajemen Informatika</option>
+          <option value="Teknik Informatika">Teknik Informatika</option>
+          <option value="Sistem Informasi">Sistem Informasi</option>
+        </select>
+        <p id="prodiErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="alamat">Alamat <span class="required">*</span></label>
+        <textarea id="alamat" rows="3" placeholder="Masukkan alamat lengkap (minimal 10 karakter)"></textarea>
+        <p id="alamatErr" class="error-msg"></p>
+      </div>
+
+      <div class="form-group">
+        <label>Foto Mahasiswa <span class="required">*</span></label>
+        <div class="upload-area">
+          <div class="upload-left">
+            <label class="upload-label" for="foto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+              </svg>
+              <span id="uploadText">Pilih File (JPG/PNG, maks. 2MB)</span>
+            </label>
+            <input type="file" id="foto" accept=".jpg,.jpeg,.png" style="display:none;" />
+            <p id="fotoErr" class="error-msg"></p>
+            <p id="fotoOk" class="success-msg"></p>
+          </div>
+
+          <div class="preview-box" id="previewBox">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" id="btnSubmit" class="btn-primary">Daftar Sekarang</button>
+        <button type="button" id="btnReset" class="btn-reset">Reset</button>
+      </div>
+    </form>
+
+    <div id="summaryCard" style="display: none;">
+      <div class="success-banner">
+        ✅ Pendaftaran Berhasil! Data Anda telah diterima.
+      </div>
+      
+      <div class="result-card">
+        <div class="result-photo" id="resultPhoto">
+          </div>
+        <div class="result-info">
+          <h3>Kartu Tanda Pendaftaran</h3>
+          <hr>
+          <table>
+            <tr><td>NIM</td><td>: <span id="resNim"></span></td></tr>
+            <tr><td>Nama</td><td>: <span id="resNama"></span></td></tr>
+            <tr><td>Email</td><td>: <span id="resEmail"></span></td></tr>
+            <tr><td>No. HP</td><td>: <span id="resHp"></span></td></tr>
+            <tr><td>Gender</td><td>: <span id="resGender"></span></td></tr>
+            <tr><td>Prodi</td><td>: <span id="resProdi"></span></td></tr>
+            <tr><td>Alamat</td><td>: <span id="resAlamat"></span></td></tr>
+          </table>
+        </div>
+      </div>
+      
+      <button type="button" id="btnEdit" class="btn-edit">Edit Data Kembali</button>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
